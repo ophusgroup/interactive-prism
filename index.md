@@ -1,6 +1,6 @@
 ---
-title: 'Quickstart Template for Elemental Microscopy'
-short_title: EM Quickstart
+title: 'Interactive Guide to PRISM'
+short_title: Interactive Guide to PRISM
 numbering:
   heading_2: false
 ---

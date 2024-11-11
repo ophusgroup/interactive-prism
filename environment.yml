@@ -1,4 +1,4 @@
-name: change-this-to-repo-name
+name: interactive-prism
 channels:
   - conda-forge
 dependencies:
