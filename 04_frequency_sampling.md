@@ -19,8 +19,9 @@ Frequency space with coordinates replaced with plane waves of equivalent frequen
 ## Probe Construction
 Since this process is linear one can work with each of the components individually and then add up the result later. In the case of PRISM, we take advantage of this fact to propagate each of the plane waves separately so we can apply weightings to them after they have been propagated through the plane to make use of one multislice propagation many times. The construction of a probe using each of the spatial frequencies can be seen and demonstrated in the gif below.
 
-:::{figure} ./figures/probe_construction.gif
+:::{figure} #app:time_evolution
 :name: Probe Construction
+:placeholder: ./figures/probe_construction.gif
 :alt: Demonstration of the construction of a probe by slowly adding spatial frequencies (downsampled f = 8)
 :align: center
 Demonstration of the construction of a probe by slowly adding spatial frequencies (downsampled f = 8)
