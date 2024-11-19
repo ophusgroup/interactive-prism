@@ -1,10 +1,11 @@
-# Elemental Microscopy Quickstart
+# Interactive PRISM
 
-This repository contains minimal configuration files to get started for an `Elemental Microscopy` article.
+This repository contains the files for building the interactive PRISM paper guide. Which includes numerous interactive elements for building intuitions and learning about the PRISM algorithm. If you are building the repository locally please follow the instructions below.
 
 ## People
 
-This quickstart guide was developed by [Colin Ophus](mailto:cophus@gmail.com) and [Georgios Varnavides](mailto:gvarnavides@berkeley.edu). 
+This website was developed by [Antony Georgiadis](mailto:antonyg@stanford.edu) and [Colin Ophus](mailto:cophus@gmail.com) and was built using the em-quickstart guide.
+
 
 ## Installation Instructions
 
