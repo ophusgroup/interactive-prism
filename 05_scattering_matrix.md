@@ -11,9 +11,9 @@ title: Power of the S Matrix
 ## Calculation of Scattering Matrix
 Once we know which plane waves represent the spatial frequencies we will include we can construct the S-matrix by propagating each plane wave through the sample. The final matrix is the sample's width and height and the depth of the number of frequencies probed. Please see a representative depiction of each of the plane waves after passing through silicon.
 
-:::{figure} ./figures/propogated_plane_waves.gif
-:name: Probe after propogating through sample
-:alt: Probe after propogating through sample
+:::{figure} ./figures/propagated_plane_waves.gif
+:name: Probe after propagating through sample
+:alt: Probe after propagating through sample
 :align: center
 Probe after propogating through sample
 :::
@@ -43,8 +43,8 @@ Final movie of STEM data being generated with the S matrix and abberation simula
 Once we have defined functions for creating a matrix representation of the material, the S matrix, and of the particular probe position, the weightings, we can reduce the creation of one STEM position measurement to the multiplication of a new weighting with the S matrix we have created.
 
 :::{figure} ./figures/si_probe_ex.png
-:name: Probe after propogating through sample
-:alt: Probe after propogating through sample
+:name: Probe after propagating through sample
+:alt: Probe after propagating through sample
 :align: center
-Probe after propogating through sample
+Probe after propagating through sample
 :::

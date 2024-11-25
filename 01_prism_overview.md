@@ -25,5 +25,5 @@ Please continue on to the next section to learn more about the fundamentals or s
 :name: PRISM outline from paper
 :alt: Frequency space with coordinates replaced with plane waves of equivalent frequency
 :align: center
-PRISM outline from original ophus paper
+PRISM outline from the [original paper by C Ophus](doi:10.1186/s40679-017-0046-1).
 :::
