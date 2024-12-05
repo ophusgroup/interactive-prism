@@ -5,12 +5,12 @@ project:
   title: Interactive Guide to PRISM
   description: Educational walkthrough of the PRISM algorithm for STEM simulation
   short_title: Interactive Guide to PRISM
-  keywords:
-    - PRISM
-    - STEM
-    - Scanning Transmission Electron Microscopy
-    - Multislice
-  github: https://github.com/msa-em/change-this-to-repo-name
+  # keywords:
+  #   - PRISM
+  #   - STEM
+  #   - Scanning Transmission Electron Microscopy
+  #   - Multislice
+  github: https://github.com/ophusgroup/interactive-prism
   # jupyter: true
   #  jupyter:
   #    binder:
@@ -24,7 +24,7 @@ project:
   license: CC-BY-4.0
   # banner: banner.png
   # thumbnail: thumbnail.webp
-  date: 2024-08-27
+  date: 2024-12-05
   history:
     submitted: 2023-08-27
     published: 2024-08-27
@@ -87,6 +87,6 @@ project:
     HRTEM: high resolution transmission electron microscopy
     M&M: Microscopy and Microanalysis
     STEM: scanning transmission electron microscopy
-    PRISM: plane wave reciprical space interpolated scattering matrix
+    PRISM: plane-wave reciprocal-space interpolated scattering matrix
 site:
   template: book-theme
