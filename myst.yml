@@ -81,12 +81,13 @@ project:
         - ageorgiadis
         - cophus
   abbreviations:
-    4D-STEM: four dimensional scanning transmission electron microscopy
+    4DSTEM: four dimensional scanning transmission electron microscopy
     FFT: fast Fourier transform
     HAADF: high angle annular dark field
     HRTEM: high resolution transmission electron microscopy
     M&M: Microscopy and Microanalysis
-    STEM: scanning transmission electron microscopy
+    PDE: Partial differential equation
     PRISM: plane-wave reciprocal-space interpolated scattering matrix
+    STEM: scanning transmission electron microscopy
 site:
   template: book-theme

@@ -17,7 +17,7 @@ For the reader interested in understanding more about these please see the [Kirk
 
 ## Mathematical Representations
 
-Following [Kirkland](doi:10.1007/978-1-4419-6533-2), we first write the Schrödinger equation which describes the evolution along the $z$-axis for an electron wavefunction $\psi(\bm{r})$ as
+Following [Kirkland](doi:10.1007/978-1-4419-6533-2), we first write the Schrödinger equation which describes the evolution along the $z$-axis for an electron wavefunction $\psi(\bm{r})$ over spatial coordinates $\bm{r}=(x,y,z)$ as
 
 ```{math}
 :label: eq:Shrodinger_electron
@@ -27,7 +27,7 @@ Following [Kirkland](doi:10.1007/978-1-4419-6533-2), we first write the Schrödi
     + 
     \ii \sigma V(\bm{r}) \psi(\bm{r}),
 ```
-where $\ii$ is the imaginary constant, $\lambda$ is the relativistically-corrected electron wavelength, ${\nabla_{xy}}^2 $ is the @wiki:Laplace_operator, $\sigma$ is the electron-matter interaction constant for a given wavelength, and $V(\bm{r})$ is the electrostatic potential of a sample. Each algorithm we consider is a solution to this equation.
+where $\ii$ is the imaginary constant, $\lambda$ is the relativistically-corrected electron wavelength, ${\nabla_{xy}}^2 $ is the @wiki:Laplace_operator, $\sigma$ is the electron-matter interaction constant for a given wavelength, and $V(\bm{r})$ is the electrostatic potential of a sample. This equation is a @wiki:Partial_differential_equation (PDE) which is far too complex to solve analytically. It is difficult to solve because the two operators on the right side do satisfy the @wiki:Commutative_property, meaning that the order matters. Each algorithm we consider is a solution to this equation.
 
 
 ## Bloch Waves
@@ -149,8 +149,136 @@ $$
 
 
 
-## Multislice
+## Multislice Method
 
-In the multislice method, originally proposed by [Cowley and Moodie](https://doi.org/10.1107/S0567739468000653), we model electron scattering by propagating the wavefunction step-by-step through the sample, alternating between transmission through a thin slice and free space propagation between slices.
+The multislice method, originally proposed by [Cowley and Moodie](https://doi.org/10.1107/S0365110X57002194), models electron scattering by propagating the wavefunction step-by-step through the sample. We compute the scattering by alternating between transmission through a thin slice and free space propagation between slices. The multislice solution to Equation {eq}`eq:Shrodinger_electron` is similar to a @wiki:Split-step_method. The core idea is to remove one of the two operators on the right side of Equation {eq}`eq:Shrodinger_electron`, producing two new PDEs which solve transmission and free space propagation separately.
+
+
+### Transmission Operator
+
+Ignoring propagation, we can write Equation {eq}`eq:Shrodinger_electron` as
+```{math}
+:label: eq:transmission
+\frac{\partial }{\partial z} \psi(\bm{r})
+    =
+    \ii \sigma V(\bm{r}) \psi(\bm{r}).
+```
+
+Following [Kirkland](doi:10.1007/978-1-4419-6533-2), we can write the solution to this equation as 
+
+```{math}
+:label: eq:transmission_step
+\psi(\bm{r}) 
+=
+\exp 
+  \left\{
+  \int_{z_0}^{z_0 + \Delta z} 
+  \ii \sigma 
+  V(\bm{r})
+  dz
+  \right\}
+\psi_0(\bm{r}),
+```
+where $\Delta z$ is the thickness of a single slice, and $\psi_0(\bm{r})$ is the wavefunction before transmission. If we compress all of the sample potential inside this slice into an infinitely thin 2D projected potential $V_{\rm{2D}}(\bm{r}) = \int_{z}^{z+\Delta z} V(\bm{r})\,dz$, we can write the solution as 
+```{math}
+:label: eq:transmission_operator
+\psi(\bm{r}) =
+\psi_0(\bm{r}) \exp[
+  \ii \sigma V_{\rm{2D}}(\bm{r})
+].
+```
+This expression, known as the `transmission operator`, shows that the electron wavefunction gains a forward phase shift proportional to the potential $V_{\rm{2D}}(\bm{r})$ of the slice.
+
+
+
+### Propagation Operator
+
+Setting the sample potential $V(\bm{r})=0$, we can write Equation {eq}`eq:Shrodinger_electron` as
+```{math}
+:label: eq:transmission
+\frac{\partial }{\partial z} \psi(\bm{r})
+    =
+\frac{\ii \lambda}{4 \pi} {\nabla_{xy}}^2 \psi(\bm{r}).
+```
+
+Setting $\Lambda = \lambda \Delta z / 4 \pi$ and Taylor expanding this expression gives
+```{math}
+:label: eq:prop02
+\psi(\bm{r})
+    = 
+    \left[
+      \sum_{m=0}^\infty 
+      (\ii \Lambda)^m 
+      \frac{\partial^{2m} \psi_0(\bm{r})}{\partial x^{2m}} 
+    \right]
+    \left[
+      \sum_{n=0}^\infty 
+      (\ii \Lambda)^n 
+      \frac{\partial^{2n} \psi_0(\bm{r})}{\partial y^{2n}} 
+    \right].
+```
+Taking the 2D Fourier transform $\Psi(\bm{k}) = \mathscr{F}_{\bm{r} \rightarrow \bm{k}}\{ \psi(\bm{r}) \}$ of both sides and using the fact that the x and y derivatives are orthogonal, we get
+```{math}
+:label: eq:prop01
+\begin{aligned}
+\Psi(\bm{k})
+
+    &= 
+    \left[
+      \sum_{m=0}^\infty 
+      (\ii \Lambda)^m 
+      (\ii 2 \pi k_x)^{2m}
+    \right]
+    \left[
+      \sum_{n=0}^\infty 
+      (\ii \Lambda)^n 
+      (\ii 2 \pi k_y)^{2n}
+    \right]
+    \Psi_0(\bm{k}) \\
+    
+    &=
+    \left[
+      \sum_{m=0}^\infty 
+      (-\ii 4 \pi^2 \Lambda {k_x}^2)^m 
+    \right]
+    \left[
+      \sum_{m=0}^\infty 
+      (-\ii 4 \pi^2 \Lambda {k_y}^2)^m 
+    \right]
+    \Psi_0(\bm{k}) \\
+
+    &=
+    \left[
+      \sum_{m=0}^\infty 
+      (-\ii \pi \lambda \Delta z {k_x}^2)^m 
+    \right]
+    \left[
+      \sum_{m=0}^\infty 
+      (-\ii \pi \lambda \Delta z {k_y}^2)^m 
+    \right]
+    \Psi_0(\bm{k}) \\
+
+    &=
+    \exp\left(
+      -\ii \pi \lambda \Delta z {k_x}^2 
+    \right)
+    \exp\left(
+      -\ii \pi \lambda \Delta z {k_y}^2
+    \right)
+    \Psi_0(\bm{k}).
+\end{aligned}
+```
+We can now write the final `propagation operator` by combining ${k_x}^2+{k_y}^2=|\bm{k}|^2$ to give
+```{math}
+:label: eq:prop
+\Psi(\bm{k})
+  =
+  \exp\left(
+    -\ii \pi \lambda \Delta z |\bm{k}|^2 
+  \right)
+  \Psi_0(\bm{k}).
+```
+
+In the multislice method, this operator is applied iteratively between slices to propagate the wavefunction through the sample. Once the electron wavefunction has passed through the full sample, we use a detector function to compute the resulting output measurement.
 
 

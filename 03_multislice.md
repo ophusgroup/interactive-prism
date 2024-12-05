@@ -14,7 +14,7 @@ To get started on slicing, one first must load or generate a sample which is oft
 :name: Generation of Silicon using ase
 :alt: Slice of a Silicon Layer
 :align: center
-Generation of Silicon using ase
+Generation of Silicon using the `ase` package.
 :::
 
 ## Calculating the Electronic Potential:
