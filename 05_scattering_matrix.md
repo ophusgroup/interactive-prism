@@ -38,7 +38,13 @@ Spherical and Defocus abberations simulator
 Movement coming from linear phase shift
 :::
 
-## Generating STEM data
+## Scattering Matrix and Probe Vector Multiplication
+One of the nice ideas that is presented in the PRISM paper is an idea that we can create an 3D array in which two of the axes create the real space plane waves and the third axis is effectively a Fourier domain because each depth corresponds to a unique spatial frequency. This means that in order to apply the necessary probe weighting in Fourier space we can simply multiply the phase component to along that axis associated with the pupil phase we anticipate.
+
+(Diagram Coming soon)
+
+
+## Final Output at STEM Probe
 Final movie of STEM data being generated with the S matrix and abberation simulator
 Once we have defined functions for creating a matrix representation of the material, the S matrix, and of the particular probe position, the weightings, we can reduce the creation of one STEM position measurement to the multiplication of a new weighting with the S matrix we have created.
 
