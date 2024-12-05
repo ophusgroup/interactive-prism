@@ -27,12 +27,12 @@ Since this process is linear one can work with each of the components individual
 Demonstration of the construction of a probe by slowly adding spatial frequencies (downsampled f = 8)
 :::
 
-## F Sampling
-The final thing that PRISM takes advantage of is that when one omits frequencies evenly one can downsample the probe which reduces the computational burden of calculating each of these frequencies individually. What this is saying is that one can get a pretty good representation of the beam without some of the detail provided by having similar frequencies. This can be seen very clearly above in the construction of the probe where the probe plane takes shape very quickly with limited frequencies and the details can slowly fill in. When done evenly this leads to an interesting effect that appears like a duplication for every factor f of 2 is downsampled. You can play with this downsampling and how it impacts this repetition of the probe below. Take a look at factors of 2,4,8,16 as these will be the most apparent as the sampling is perfect even in these cases.
+## $f$ Sampling
+The final thing that PRISM takes advantage of is that when one omits frequencies evenly one can downsample the probe which reduces the computational burden of calculating each of these frequencies individually. What this is saying is that one can get a pretty good representation of the beam without some of the detail provided by having similar frequencies. This can be seen very clearly above in the construction of the probe where the probe plane takes shape very quickly with limited frequencies and the details can slowly fill in. When done evenly this leads to an interesting effect that appears like a duplication for every factor $f$ of 2 is downsampled. You can play with this downsampling and how it impacts this repetition of the probe below. Take a look at factors of 2,4,8,16 as these will be the most apparent as the sampling is perfect even in these cases.
 
 :::{figure} #app:spatial_frequency_widget
-:name: F Sampling Example
+:name: $f$ Sampling Example
 :placeholder: ./figures/static_spatial_frequency_sampling.png
-Downsampling by f in frequency space example
+Downsampling by $f$ in frequency space example
 :::
 
