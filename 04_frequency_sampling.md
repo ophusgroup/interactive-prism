@@ -17,7 +17,7 @@ Frequency space with coordinates replaced with plane waves of equivalent frequen
 :::
 
 ## Probe Construction
-Since this process is linear one can work with each of the components individually and then add up the result later. In the case of PRISM, we take advantage of this fact to propagate each of the plane waves separately so we can apply weightings to them after they have been propagated through the plane to make use of one multislice propagation many times. The construction of a probe using each of the spatial frequencies can be seen and demonstrated in the gif below.
+One of the features of the Fourier transform is that it is linear which means one can work with each of the components individually and then add up the result later. In the case of PRISM, we take advantage of this fact to propagate each of the plane waves separately so we can apply weightings to them after they have been propagated through the sample to make use of one multislice propagation many times. The construction of a probe using each of the spatial frequencies can be seen and demonstrated in the gif below. In the gif/interactive demo below do you notice anything that changes as more spatial frequencies are added? (See an explanation below of a few things that you can observe)
 
 :::{figure} #app:time_evolution
 :name: Probe Construction
@@ -27,8 +27,21 @@ Since this process is linear one can work with each of the components individual
 Demonstration of the construction of a probe by slowly adding spatial frequencies (downsampled f = 8)
 :::
 
+:::{dropdown} Observations
+:close:
+### Size of Spot:
+One key parameter that one can observe from the plot is the reduction of the primary spot as the rings are added to the pupil. This process is analogous to increasing the numerical aperture of a particular system which by the raleigh criterion one would expect to decrease the spot size.
+
+### Increase in Detail:
+The second key thing to observe is the most obvious which is that as we add spatial frequencies detail increases.
+
+### Duplications of the Spot:
+This occurs due to the way that the frequencies are evenly spaced out by a particular spacing and will be discussed further in the next section.
+
+:::
+
 ## $f$ Sampling
-The final thing that PRISM takes advantage of is that when one omits frequencies evenly one can downsample the probe which reduces the computational burden of calculating each of these frequencies individually. What this is saying is that one can get a pretty good representation of the beam without some of the detail provided by having similar frequencies. This can be seen very clearly above in the construction of the probe where the probe plane takes shape very quickly with limited frequencies and the details can slowly fill in. When done evenly this leads to an interesting effect that appears like a duplication for every factor $f$ of 2 is downsampled. You can play with this downsampling and how it impacts this repetition of the probe below. Take a look at factors of 2,4,8,16 as these will be the most apparent as the sampling is perfect even in these cases.
+So far the previous two sections have been focusing on trying to understand how the probe is formed and taking a look at how spatial frequencies work. In this section we're going to consider what downsampling looks like in Fourier Space as it is one of the main techniques that the PRISM algorithm uses. The PRISM takes advantage of downsampling the probe to reduce the computational burden of calculating as many frequencies as there is often a lot of redundant information present in the beam. What this is saying is that one can get a pretty good representation of the beam without some of the detail provided by having similar frequencies which you saw earlier in the probe construction demonstration. When done evenly this leads to an interesting effect that appears like a duplication for every factor $f$ of the object is downsampled. You can play with this downsampling and how it impacts this repetition of the probe below. Take a look at factors of 1,2,4,8,15 as these will help with showing without too many artifacts as they allow for a perfect splitting of the frequency space (840px by 840px) in the demo. 
 
 :::{figure} #app:spatial_frequency_widget
 :name: $f$ Sampling Example
@@ -36,3 +49,8 @@ The final thing that PRISM takes advantage of is that when one omits frequencies
 Downsampling by $f$ in frequency space example
 :::
 
+:::{note}
+An f factor that is equal to one is the equivalent of the multislice algorithm and should reproduce the same output
+:::
+
+While downsampling in principle leads to a loss of information one can simulate nearly identical outputs with far fewer frequencies up until a point in which the information from scattering starts to cross from one of these repeated probe areas into another which can be seen in the [original paper by C Ophus](doi:10.1186/s40679-017-0046-1). Now that we have an intuition for frequency space and generally understand how downsampling works lets move on to the scattering matrix where we start to propogate each of these frequencies.
